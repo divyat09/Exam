@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+
+<script type="text/javascript">
+
+    function validateForm() {
+        var x = document.forms["RegForm"]["name"].value;
+        if (x.length <=0  || x.length >20 ) {
+            alert("Name must be of max 20 characters");
+            return false;
+        }
+
+        var Regex= /^[a-zA-Z ]+$/;
+        if ( ! Regex.test( x ) ){
+            alert("Name: only english alphabets and space");
+            return false;   
+        }
+
+        x = document.forms["RegForm"]["address"].value;
+        if (x.length <=0  || x.length >100) {
+            alert("Address must be of max 100 characters");
+            return false;
+        }
+
+        x = document.forms["RegForm"]["email"].value;
+
+        if (x == "") {
+            alert("Email: Cannot be Empty");
+            return false;
+        }
+	
+	if( x.indexOf('@') <= -1  ){
+	    alert("Email: Must contain @");
+	    return false;	
+	}
+
+        var left= x.split("@")[0];
+        var right= x.split("@")[1];
+
+        var Regex= /^[a-zA-Z]+$/;
+        if ( ! Regex.test( left ) ){
+            alert("Email: Only English Alphabet on left");
+            return false;   
+        }
+
+        var Regex= /.\.com$/;
+        if ( ! Regex.test( right) ){
+            alert("Email: Must end with .com");
+            return false;   
+        }
+
+        x = document.forms["RegForm"]["mobile"].value;
+        if ( !( x.length ==10) ) {
+            alert(" Mobile Number is a 10-digit numeric value ");
+            return false;
+        }
+
+        var Regex= /^[1-9][0-9]*$/;
+        if ( ! Regex.test( x ) ){
+            alert("Mobile: Numeric Value Only and Not starting with Zero");
+            return false;   
+        }
+
+        x = document.forms["RegForm"]["acc_number"].value;
+        if ( !( x.length ==5) ) {
+            alert(" Bank Account number is a 5-digit numeric value ");
+            return false;
+        }
+
+        var Regex= /^[0-9]*$/;
+        if ( ! Regex.test( x ) ){
+            alert(" Account Number: Numeric Value Only");
+            return false;   
+        }
+
+        x = document.forms["RegForm"]["acc_pass"].value;
+        if ( x.length <=0  || x.length >20 ) {
+            alert(" Bank Password can be maximum 20 characters ");
+            return false;
+        }
+       
+        var Regex= /^[a-zA-Z0-9]*$/;
+        if ( ! Regex.test( x ) ){
+            alert("Password: AplhaNumeric Value Only");
+            return false;   
+        }
+
+        return true;
+
+    }
+
+</script>
+
+	<body>
+		<div id="Registration">
+			<form name="RegForm" method="post" action="register_backend.php" onsubmit="return validateForm()">						    
+              <table border="0">
+					<tr>
+ 						<td>Name</td><td><input type="text" name="name"></td>
+					</tr>
+					<tr>
+						<td>Address</td><td> <input type="text" name="address"></td>
+					</tr>
+					<tr>
+						<td>Email</td><td> <input type="text" name="email"></td>
+					</tr>
+					<tr>
+						<td>Mobile</td><td> <input type="text" name="mobile"></td>
+					</tr>
+					<tr>
+						<td>Account Number</td><td> <input type="text" name="acc_number"></td>
+					</tr>
+					<tr>
+						<td>Account Password </td><td><input type="password" name="acc_pass"></td>
+					</tr>
+					<tr>
+						<td><input id="button" type="submit" name="Submit" value="Sign-Up"></td>
+					</tr>
+			 </table>
+			</form>
+		</div>
+
+		<a href="admin.html">See all registrations</a>
+
+	</body>
+</html>

@@ -1,0 +1,38 @@
+%\documentclass[a4paper, 10pt]{article}
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\begin{document}
+	
+\begin{algorithm}[t]
+  \caption{BiGAN Model}
+  \begin{algorithmic}[1]
+     \State \textbf{Input Batch}: images x, correct text caption t, wrong text caption $\hat{t}$, total batch training steps N 
+     \For {$i$=1 to $N$}	
+      \State $e	\leftarrow Encoder(x)$ \Comment{ Convolving the image }
+      \State $h	\leftarrow \phi(t)$  \Comment{ Encode correct text caption }
+      \State $\hat{h} \leftarrow \phi(\hat{t})$ \Comment{ Encode wrong text caption }
+      \State $z \leftarrow \mathcal{N}(0,1)$ \Comment{ Generate gaussian noise }
+      \State $\hat{x} \leftarrow G(z,h,e)$   \Comment{ Generator forward pass }     
+	  \State $l	\leftarrow \phi(c)$			\Comment{ Encode correct logo code }	
+ 	  \State $\hat{c} \leftarrow R(D(x))$ \Comment{ Generate logo code }
+	  \State $\hat{l} \leftarrow \phi(\hat{c})$  \Comment{ Encode generated logo code }
+      \State $d_{1} \leftarrow D(x,h)$      	 \Comment{ Real image and correct caption }
+      \State $d_{2} \leftarrow D(x,\hat{h})$     \Comment{ Real image and wrong caption}   
+      \State $d_{3} \leftarrow D(\hat{x},h)$      \Comment{ Fake image and correct caption } 
+      \State $L_{D} \leftarrow \log(d_{1}) + \log(1-d_{2})/2 + \log(1-d_{3})/2$   \Comment{ Discriminator Loss }   
+      \State $D \leftarrow D - \alpha \partial L_{D}/ \partial D$  \Comment{ Update Discriminator Parameters}
+      \State $L_{E} \leftarrow | x - \hat{x} | $      \Comment{ Encoder L1 Loss }	
+      \State $L_{G} \leftarrow \log(d_{3}) + L_{E} $ \Comment{ Generator Loss }                 
+      \State $L_{R} \leftarrow \| l, \hat{l} \| $   \Comment{ RNN Loss }	
+    
+      \State $G \leftarrow G - \alpha \partial L_{G}/ \partial G$ \Comment{ Update Generator Parameters }     
+      \State $R \leftarrow R - \alpha \partial L_{R}/ \partial R$ \Comment{ Update RNN Parameters}     
+                  
+     \EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\end{document}

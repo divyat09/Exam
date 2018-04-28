@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\title{ Assignemnt 8 }
+\author{ Divyat Mahajan( 14227 ) }
+
+\begin{document}
+
+\maketitle
+
+\textbf{Scatter Plot Observations}\\ \\
+1. Larger number of parameters would take more execution time, consistent with observation in all the scatter plots.\\ \\
+2. For a given Num Param, total Execution Time would decrease with more Num Threads( more parallelism ). This is consistent with observation: look at the case of $10^6$ Num Param case, the Exeuction Time decreases from 80000 to 60000.
+
+\begin{figure}
+		\includegraphics[]{Scatter_1.eps}
+		\caption{a: Scatter Plot: Num Threads 1}
+\end{figure}
+
+\begin{figure}
+		\includegraphics[]{Scatter_2.eps}
+		\caption{a: Scatter Plot: Num Threads 2}
+\end{figure}
+
+\begin{figure}
+		\includegraphics[]{Scatter_4.eps}
+		\caption{a: Scatter Plot: Num Threads 4}
+\end{figure}
+
+\begin{figure}
+		\includegraphics[]{Scatter_8.eps}
+		\caption{a: Scatter Plot: Num Threads 8}
+\end{figure}
+
+\begin{figure}
+		\includegraphics[]{Scatter_16.eps}
+		\caption{a: Scatter Plot: Num Threads 16}
+\end{figure}
+
+
+\begin{figure}
+		\includegraphics[]{Mean_Execution_Time_Plot.eps}
+		\caption{b: Line Plot}
+		\bigbreak
+		Least mean execution time is observed for Num Threads= 4 and there is not a very large difference between cases Num Threads=4, 8, 16. 
+		This is because the laptop on which code is run has only 3-4 cores, so increasing number of threads beyond 4 wont lead to much difference.
+\end{figure}
+
+\begin{figure}
+		\includegraphics[]{Bar_Plot.eps}
+		\caption{c: Bar Plot }
+		\bigbreak
+		The speed up first decreases and then again increases with increasing number of params ( For Num Thread $>$ 1 ). This can be explained as the initial decrease is due to more threads being used as compared to single thread but this difference is relative to the total number of params. Hence, say for 100 params, using 2 threads might take 50 units of time as compared to 100 units of time by single thread. But say for the case of $10^6$ params, there is not much difference between ($10^6$)/2 and $10^6$.
+\end{figure}
+
+\begin{figure}
+		\includegraphics[]{Bar_Plot_Error.eps}
+		\caption{d: Bar Error Plot}
+\end{figure}
+
+
+\end{document}

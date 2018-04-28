@@ -1,0 +1,7 @@
+Prints the current file name:
+awk 'END {print FILENAME}' file.txt
+
+( Note that FILENAME is undefined in BEGIN block )
+
+Prints only those lines with more than four fields
+awk 'NF>4' file.txt 

@@ -1,0 +1,12 @@
+name="filename"
+Valid=$(find "$name" -name '*.c') # File Validity Check
+
+IFS=','        # comma is set as delimiter
+read temp1 temp2 <<< "$temp"    # str is read into an array as tokens separated by IFS
+
+# Strip Spaces from the string Name
+Name=$(awk '{$1=$1;print}' <<< "${Name}" )
+
+
+awk '/start/,/end/' sample1.xml
+sed -n '/start/,/end/p' filename
