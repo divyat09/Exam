@@ -3,4 +3,4 @@ https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-t
 https://regex101.com/
 
 http://lowrank.net/gnuplot/datafile2-e.html
-
+http://psy.swansea.ac.uk/staff/carter/gnuplot/gnuplot_histograms.htm
